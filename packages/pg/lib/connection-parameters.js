@@ -155,6 +155,8 @@ class ConnectionParameters {
     if (this.client_encoding) {
       params.push('client_encoding=' + quoteParamValue(this.client_encoding))
     }
+    // 2021/06/24
+    // Support custom lookup function in ssl options
     const lookup = (this.ssl && this.ssl.lookup)? this.ssl.lookup: dns.lookup;
     lookup(this.host, function (err, address) {
       if (err) return cb(err, null)
